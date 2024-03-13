@@ -3,16 +3,6 @@ import { describe, it } from 'mocha'
 import Product from '../../../src/models/product'
 
 describe('Routes: Products', () => {
-  let request
-  let app
-
-  before(async () => {
-    app = await setupApp()
-    request = supertest(app)
-  })
-
-  after(async () => await app.database.connection.close())
-
   const defaultId = '56cb91bdc3464f14678934ca'
 
   const defaultProduct = {
