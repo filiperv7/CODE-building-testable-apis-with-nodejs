@@ -23,18 +23,6 @@ class ProductsController {
     } catch (err) {
       res.status(400).send(err.message)
     }
-
-    // const response = await Promise.resolve([
-    //   {
-    //     __v: 0,
-    //     _id: '56cb91bdc3464f14678934ca',
-    //     name: 'Default product',
-    //     description: 'product description',
-    //     price: 100
-    //   }
-    // ])
-
-    // res.send(response)
   }
 
   async create(req, res) {
@@ -45,6 +33,19 @@ class ProductsController {
     } catch (err) {
       res.status(422).send(err.message)
     }
+  }
+
+  async update(req, res) {
+    try {
+      await this.Product.updateOne({ _id: req.params.id }, req.body)
+
+      res.sendStatus(200)
+    } catch (err) {
+      res.status(422).send(err.message)
+    }
+
+    // res.sendStatus(200)
+    // return await Promise.resolve()
   }
 }
 

@@ -1,3 +1,5 @@
+import { expect } from 'chai'
+import { describe, it } from 'mocha'
 import Product from '../../../src/models/product'
 
 describe('Routes: Products', () => {
@@ -41,7 +43,6 @@ describe('Routes: Products', () => {
     it('should return a list of products', done => {
       request.get('/products').end((err, res) => {
         expect(res.body).to.eql([expectedProduct])
-        // expect(res.body[0]).to.eql(defaultProduct)
         done(err)
       })
     })
@@ -81,6 +82,26 @@ describe('Routes: Products', () => {
           .end((err, res) => {
             expect(res.statusCode).to.eql(201)
             expect(res.body).to.eql(expectedSavedProduct)
+            done(err)
+          })
+      })
+    })
+  })
+
+  describe('PUT /products/:id', () => {
+    context('when editing a product', () => {
+      it('should update the product and return 200 as status code', done => {
+        const customProduct = {
+          name: 'Custom name'
+        }
+
+        const updatedProduct = Object.assign({}, customProduct, defaultProduct)
+
+        request
+          .put(`/products/${defaultId}`)
+          .send(updatedProduct)
+          .end((err, res) => {
+            expect(res.statusCode).to.eql(200)
             done(err)
           })
       })

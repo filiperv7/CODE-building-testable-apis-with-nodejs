@@ -1,3 +1,4 @@
+import { describe, it } from 'mocha'
 import sinon from 'sinon'
 import ProductsController from '../../../src/controllers/products'
 import Product from '../../../src/models/product'
@@ -19,7 +20,6 @@ describe('Controller: Products', () => {
 
   describe('get() products', () => {
     it('should return a list of products', async () => {
-      // const request = {}
       const response = {
         send: sinon.spy()
       }
@@ -29,7 +29,6 @@ describe('Controller: Products', () => {
 
       const productsController = new ProductsController(Product)
 
-      // await productsController.get(request, response)
       await productsController.get(defaultRequest, response)
 
       sinon.assert.calledWith(response.send, defaultProduct)
@@ -121,6 +120,80 @@ describe('Controller: Products', () => {
 
         await productsController.create(defaultRequest, response)
         sinon.assert.calledWith(response.status, 422)
+      })
+    })
+  })
+
+  describe('put()', () => {
+    it('should respond with 200 when the product has been updated', async () => {
+      const fakeId = 'a-fake-id'
+      const updatedProduct = {
+        _id: fakeId,
+        name: 'Updated product',
+        description: 'Updated description',
+        price: 150
+      }
+
+      const request = {
+        params: {
+          id: fakeId
+        },
+        body: updatedProduct
+      }
+      const response = {
+        sendStatus: sinon.spy()
+      }
+
+      class fakeProduct {
+        static updateOne() {}
+      }
+
+      const updateOneStub = sinon.stub(fakeProduct, 'updateOne')
+      updateOneStub
+        .withArgs({ _id: fakeId }, updatedProduct)
+        .resolves(updatedProduct)
+
+      const productsController = new ProductsController(fakeProduct)
+      await productsController.update(request, response)
+
+      sinon.assert.calledWith(response.sendStatus, 200)
+    })
+
+    context('when an error occurs', () => {
+      it('should return 422', async () => {
+        const fakeId = 'a-fake-id'
+        const updatedProduct = {
+          _id: fakeId,
+          name: 'Updated product',
+          description: 'Updated description',
+          price: 150
+        }
+        const request = {
+          params: {
+            id: fakeId
+          },
+          body: updatedProduct
+        }
+        const response = {
+          send: sinon.spy(),
+          status: sinon.stub()
+        }
+
+        class fakeProduct {
+          static updateOne() {}
+        }
+
+        const updateOneStub = sinon.stub(fakeProduct, 'updateOne')
+        updateOneStub
+          .withArgs({ _id: fakeId }, updatedProduct)
+          .rejects({ message: 'Error' })
+
+        response.status.withArgs(422).returns(response)
+
+        const productsController = new ProductsController(fakeProduct)
+
+        await productsController.update(request, response)
+        sinon.assert.calledWith(response.send, 'Error')
       })
     })
   })
