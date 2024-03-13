@@ -1,6 +1,7 @@
+import config from 'config'
 import mongoose from 'mongoose'
 
-const mongodbUrl = process.env.MONGODB_URL || 'mongodb://localhost/test'
+const mongodbUrl = config.get('database.mongoUrl')
 
 const connect = () =>
   mongoose.connect(mongodbUrl, {
