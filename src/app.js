@@ -1,9 +1,9 @@
 import bodyParser from 'body-parser'
 import express from 'express'
 import acl from 'express-acl'
-import database from './database'
-import authMidleware from './middlewares/auth'
-import routes from './routes'
+import database from './database.js'
+import authMidleware from './middlewares/auth.js'
+import routes from './routes/index.js'
 
 const app = express()
 

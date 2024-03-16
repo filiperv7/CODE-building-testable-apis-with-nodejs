@@ -2,8 +2,8 @@ import bcrypt from 'bcrypt'
 import config from 'config'
 import jwt from 'jsonwebtoken'
 import sinon from 'sinon'
-import UsersController from '../../../src/controllers/users'
-import User from '../../../src/models/user'
+import UsersController from '../../../src/controllers/users.js'
+import User from '../../../src/models/user.js'
 
 describe('Controller: User', () => {
   const defaultUser = [

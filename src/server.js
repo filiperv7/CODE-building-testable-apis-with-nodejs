@@ -1,4 +1,4 @@
-import setupApp from './app'
+import setupApp from './app.js'
 
 const port = 8080
 ;(async () => {

@@ -1,7 +1,7 @@
 import express from 'express'
-import UsersController from '../controllers/users'
-import User from '../models/user'
-import AuthService from '../services/auth'
+import UsersController from '../controllers/users.js'
+import User from '../models/user.js'
+import AuthService from '../services/auth.js'
 
 const router = express.Router()
 const usersController = new UsersController(User, AuthService)

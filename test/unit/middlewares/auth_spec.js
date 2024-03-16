@@ -1,6 +1,6 @@
 import config from 'config'
 import jwt from 'jsonwebtoken'
-import authMiddleware from '../../../src/middlewares/auth'
+import authMiddleware from '../../../src/middlewares/auth.js'
 
 describe('AuthMiddleware', () => {
   it('should verify a JWT token and call the next middleware', done => {

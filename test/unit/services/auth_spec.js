@@ -3,7 +3,7 @@ import config from 'config'
 import jwt from 'jsonwebtoken'
 import sinon from 'sinon'
 import Util from 'util'
-import AuthService from '../../../src/services/auth'
+import AuthService from '../../../src/services/auth.js'
 
 const hashAsync = Util.promisify(bcrypt.hash)
 

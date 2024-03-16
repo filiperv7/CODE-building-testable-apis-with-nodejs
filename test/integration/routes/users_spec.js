@@ -1,5 +1,5 @@
-import User from '../../../src/models/user'
-import AuthService from '../../../src/services/auth'
+import User from '../../../src/models/user.js'
+import AuthService from '../../../src/services/auth.js'
 
 describe('Routes: Users', () => {
   const defaultId = '56cb91bdc3464f14678934ca'

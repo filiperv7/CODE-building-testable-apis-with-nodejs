@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { describe, it } from 'mocha'
-import Product from '../../../src/models/product'
-import AuthService from '../../../src/services/auth'
+import Product from '../../../src/models/product.js'
+import AuthService from '../../../src/services/auth.js'
 
 describe('Routes: Products', () => {
   const defaultId = '56cb91bdc3464f14678934ca'

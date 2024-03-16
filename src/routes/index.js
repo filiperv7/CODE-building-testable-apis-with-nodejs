@@ -1,6 +1,6 @@
 import express from 'express'
-import productsRoute from './products'
-import usersRoute from './users'
+import productsRoute from './products.js'
+import usersRoute from './users.js'
 
 const router = express.Router()
 

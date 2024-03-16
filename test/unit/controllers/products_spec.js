@@ -1,7 +1,9 @@
-import { describe, it } from 'mocha'
+// import { describe, it } from 'mocha'
 import sinon from 'sinon'
-import ProductsController from '../../../src/controllers/products'
-import Product from '../../../src/models/product'
+import {
+  default as Product,
+  default as ProductsController
+} from '../../../src/controllers/products.js'
 
 describe('Controller: Products', () => {
   const defaultProduct = [
